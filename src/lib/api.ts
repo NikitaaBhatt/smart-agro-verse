@@ -3,7 +3,7 @@
 export const AUTH_API = "https://nikita118.pythonanywhere.com/api";
 
 // PLANT DISEASE (HuggingFace)
-export const DISEASE_API = "https://nikitab12-plant-disease-api.hf.space";
+export const DISEASE_API = "https://nikitab12-plant-disease-api.hf.space/api";
 
 // CHATBOT (Render)
 export const CHATBOT_API = "https://agriculture-chatbot-t94b.onrender.com";
