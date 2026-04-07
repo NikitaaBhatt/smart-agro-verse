@@ -275,6 +275,24 @@ export const offerAPI = {
     return res.json();
   },
 
+// ---------------------
+// PLANT DISEASE API
+// ---------------------
+
+export const plantAPI = {
+  predictDisease: async (file: File) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await fetch(`${DISEASE_API}/api/predict`, {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!res.ok) throw new Error(await res.text());
+    return res.json();
+  },
+  
   // NEW → Offer History
   getOfferHistory: async (token: string) => {
     const res = await fetch(`${AUTH_API}/offers/history/`, {
