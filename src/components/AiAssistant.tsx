@@ -6,7 +6,7 @@ import { Loader2, Mic, ImagePlus, Leaf, MessageSquareText, X, Send, Trash2 } fro
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
-const AI_API_URL = "http://127.0.0.1:5055/ai/assistant";
+const AI_API_URL = "https://agriculture-chatbot-t94b.onrender.com/ai/assistant";
 
 type Message = {
   id: string;
