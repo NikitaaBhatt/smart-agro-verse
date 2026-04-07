@@ -87,7 +87,7 @@ export const AiAssistant = () => {
       // Skip text evaluation, just do disease recognition.
       try {
         const formData = new FormData();
-        formData.append("image", currentImage);
+        formData.append("file", currentImage);
 
         const res = await fetch("https://nikitab12-plant-disease-api.hf.space/api/predict", {
           method: "POST",
@@ -105,7 +105,7 @@ export const AiAssistant = () => {
           diseaseInfo: data,
         }]);
       } catch (error) {
-        toast.error("Disease recognition service not reachable. Make sure it's running on port 5000.");
+        toast.error("Failed to process image. Please try again.");
       } finally {
         setLoading(false);
       }
