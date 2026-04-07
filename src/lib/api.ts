@@ -2,8 +2,8 @@
 // AUTH (Django)
 export const AUTH_API = "https://nikita118.pythonanywhere.com/api";
 
-// PLANT DISEASE (Render)
-export const DISEASE_API = "https://your-plant-backend.onrender.com";
+// PLANT DISEASE (HuggingFace)
+export const DISEASE_API = "https://nikitab12-plant-disease-api.hf.space";
 
 // CHATBOT (Render)
 export const CHATBOT_API = "https://agriculture-chatbot-t94b.onrender.com";
