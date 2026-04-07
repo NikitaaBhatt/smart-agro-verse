@@ -323,7 +323,7 @@ export const qrAPI = {
 export const plantAPI = {
   predictDisease: async (file: File) => {
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("file", file);
 
     const res = await fetch(`${DISEASE_API}/api/predict`, {
       method: "POST",
