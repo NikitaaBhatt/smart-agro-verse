@@ -89,7 +89,7 @@ export const AiAssistant = () => {
         const formData = new FormData();
         formData.append("image", currentImage);
 
-        const res = await fetch("http://127.0.0.1:5000/api/predict", {
+        const res = await fetch("https://nikitab12-plant-disease-api.hf.space/api/predict", {
           method: "POST",
           body: formData,
         });
