@@ -1,5 +1,12 @@
 //const BASE_URL = "https://nikita118.pythonanywhere.com/api";
-const BASE_URL = "https://nikita118.pythonanywhere.com/api";
+// AUTH (Django)
+export const AUTH_API = "https://nikita118.pythonanywhere.com";
+
+// PLANT DISEASE (Render)
+export const DISEASE_API = "https://your-plant-backend.onrender.com";
+
+// CHATBOT (Render)
+export const CHATBOT_API = "https://agriculture-chatbot-t94b.onrender.com";
 
 // ---------------------
 // Types
@@ -100,7 +107,7 @@ const getAuthHeaders = (token?: string) => {
 // ---------------------
 export const authAPI = {
   registerFarmer: async (data: any) => {
-    const res = await fetch(`${BASE_URL}/farmers/register`, {
+    const res = await fetch(`${AUTH_API}/farmers/register`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -110,7 +117,7 @@ export const authAPI = {
   },
 
   loginFarmer: async (data: any) => {
-    const res = await fetch(`${BASE_URL}/farmers/login`, {
+    const res = await fetch(`${AUTH_API}/farmers/login`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -120,7 +127,7 @@ export const authAPI = {
   },
 
   registerBuyer: async (data: any) => {
-    const res = await fetch(`${BASE_URL}/buyers/register`, {
+    const res = await fetch(`${AUTH_API}/buyers/register`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -130,7 +137,7 @@ export const authAPI = {
   },
 
   loginBuyer: async (data: any) => {
-    const res = await fetch(`${BASE_URL}/buyers/login`, {
+    const res = await fetch(`${AUTH_API}/buyers/login`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -146,7 +153,7 @@ export const authAPI = {
 // ---------------------
 export const profileAPI = {
   getFarmerProfile: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/farmers/verified`, {
+    const res = await fetch(`${AUTH_API}/farmers/verified`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -154,7 +161,7 @@ export const profileAPI = {
   },
 
   updateFarmerProfile: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/farmers/verified`, {
+    const res = await fetch(`${AUTH_API}/farmers/verified`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -164,7 +171,7 @@ export const profileAPI = {
   },
 
   getBuyerProfile: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/buyers/verified`, {
+    const res = await fetch(`${AUTH_API}/buyers/verified`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -172,7 +179,7 @@ export const profileAPI = {
   },
 
   updateBuyerProfile: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/buyers/verified`, {
+    const res = await fetch(`${AUTH_API}/buyers/verified`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -188,7 +195,7 @@ export const profileAPI = {
 // ---------------------
 export const batchAPI = {
   createBatch: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/batches/create/`, {
+    const res = await fetch(`${AUTH_API}/batches/create/`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -198,14 +205,14 @@ export const batchAPI = {
   },
 
   listBatches: async () => {
-    const res = await fetch(`${BASE_URL}/batches/`);
+    const res = await fetch(`${AUTH_API}/batches/`);
     if (!res.ok) throw new Error(await res.text());
     return res.json() as Promise<Batch[]>;
   },
 
   // NEW: Get farmer's own batches
   getMyBatches: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/batches/my/`, {
+    const res = await fetch(`${AUTH_API}/batches/my/`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -213,13 +220,13 @@ export const batchAPI = {
   },
 
   getBatch: async (batchId: number) => {
-    const res = await fetch(`${BASE_URL}/batches/${batchId}/`);
+    const res = await fetch(`${AUTH_API}/batches/${batchId}/`);
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   },
 
   getPublicBatch: async (batchId: number): Promise<any> => {
-    const res = await fetch(`${BASE_URL}/public/batch/${batchId}/`);
+    const res = await fetch(`${AUTH_API}/public/batch/${batchId}/`);
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   }
@@ -233,7 +240,7 @@ export const batchAPI = {
 export const offerAPI = {
 
   createOffer: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/offers/create/`, {
+    const res = await fetch(`${AUTH_API}/offers/create/`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -243,14 +250,14 @@ export const offerAPI = {
   },
 
   listOffers: async (batchId: number) => {
-    const res = await fetch(`${BASE_URL}/offers/${batchId}/`);
+    const res = await fetch(`${AUTH_API}/offers/${batchId}/`);
     if (!res.ok) throw new Error(await res.text());
     return res.json() as Promise<Offer[]>;
   },
 
   // NEW → Get offers made for a farmer's products
   getOffersForFarmer: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/offers/farmer/`, {
+    const res = await fetch(`${AUTH_API}/offers/farmer/`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -259,7 +266,7 @@ export const offerAPI = {
 
   // NEW → Offer Rejection
   rejectOffer: async (token: string, offerId: number, reason: string) => {
-    const res = await fetch(`${BASE_URL}/offers/${offerId}/reject/`, {
+    const res = await fetch(`${AUTH_API}/offers/${offerId}/reject/`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify({ reason }),
@@ -270,7 +277,7 @@ export const offerAPI = {
 
   // NEW → Offer History
   getOfferHistory: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/offers/history/`, {
+    const res = await fetch(`${AUTH_API}/offers/history/`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -278,7 +285,7 @@ export const offerAPI = {
   },
 
   acceptOffer: async (token: string, offerId: number) => {
-    const res = await fetch(`${BASE_URL}/offers/${offerId}/accept/`, {
+    const res = await fetch(`${AUTH_API}/offers/${offerId}/accept/`, {
       method: "POST",
       headers: getAuthHeaders(token),
     });
@@ -288,7 +295,7 @@ export const offerAPI = {
 
     // NEW → Get offers made by the logged-in buyer
   getBuyerOffers: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/offers/buyer/`, {
+    const res = await fetch(`${AUTH_API}/offers/buyer/`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -303,7 +310,7 @@ export const offerAPI = {
 // ---------------------
 export const qrAPI = {
   scanBatch: async (batchId: number) => {
-    const res = await fetch(`${BASE_URL}/public/batch/${batchId}/`);
+    const res = await fetch(`${AUTH_API}/public/batch/${batchId}/`);
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   }
@@ -315,7 +322,7 @@ export const qrAPI = {
 // ---------------------
 export const purchaseAPI = {
   initiate: async (token: string, offerId: number) => {
-    const res = await fetch(`${BASE_URL}/purchase/initiate/`, {
+    const res = await fetch(`${AUTH_API}/purchase/initiate/`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify({ offer_id: offerId }),
@@ -325,7 +332,7 @@ export const purchaseAPI = {
   },
 
   confirm: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/purchase/confirm/`, {
+    const res = await fetch(`${AUTH_API}/purchase/confirm/`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -336,7 +343,7 @@ export const purchaseAPI = {
 
     // NEW → Get purchases of logged-in buyer
   listBuyerPurchases: async (token: string) => {
-    const res = await fetch(`${BASE_URL}/purchase/buyer/`, {
+    const res = await fetch(`${AUTH_API}/purchase/buyer/`, {
       headers: getAuthHeaders(token),
     });
     if (!res.ok) throw new Error(await res.text());
@@ -351,7 +358,7 @@ export const purchaseAPI = {
 // ---------------------
 export const reviewsAPI = {
   postReview: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/reviews/post/`, {
+    const res = await fetch(`${AUTH_API}/reviews/post/`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -361,7 +368,7 @@ export const reviewsAPI = {
   },
 
   getFarmerReviews: async (farmerId: number) => {
-    const res = await fetch(`${BASE_URL}/reviews/farmer/${farmerId}/`);
+    const res = await fetch(`${AUTH_API}/reviews/farmer/${farmerId}/`);
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   }
@@ -372,14 +379,14 @@ export const communityAPI = {
 
   // GET feed
   getFeed: async () => {
-    const res = await fetch(`${BASE_URL}/community/feed`);
+    const res = await fetch(`${AUTH_API}/community/feed`);
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   },
 
   // CREATE post
   createPost: async (token: string, data: any) => {
-    const res = await fetch(`${BASE_URL}/community/posts`, {
+    const res = await fetch(`${AUTH_API}/community/posts`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
@@ -390,7 +397,7 @@ export const communityAPI = {
 
   // LIKE post
   likePost: async (token: string, postId: number) => {
-    const res = await fetch(`${BASE_URL}/community/posts/${postId}/like`, {
+    const res = await fetch(`${AUTH_API}/community/posts/${postId}/like`, {
       method: "POST",
       headers: getAuthHeaders(token),
     });
@@ -400,7 +407,7 @@ export const communityAPI = {
 
   // UNLIKE post (optional)
   unlikePost: async (token: string, postId: number) => {
-    const res = await fetch(`${BASE_URL}/community/posts/${postId}/unlike`, {
+    const res = await fetch(`${AUTH_API}/community/posts/${postId}/unlike`, {
       method: "POST",
       headers: getAuthHeaders(token),
     });
@@ -410,7 +417,7 @@ export const communityAPI = {
 
   // COMMENT on post
   commentOnPost: async (token: string, postId: number, data: any) => {
-    const res = await fetch(`${BASE_URL}/community/posts/${postId}/comments`, {
+    const res = await fetch(`${AUTH_API}/community/posts/${postId}/comments`, {
       method: "POST",
       headers: getAuthHeaders(token),
       body: JSON.stringify(data),
