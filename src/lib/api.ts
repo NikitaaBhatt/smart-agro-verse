@@ -3,7 +3,7 @@
 export const AUTH_API = "https://nikita118.pythonanywhere.com/api";
 
 // PLANT DISEASE (HuggingFace)
-export const DISEASE_API = "https://nikitab12-plant-disease-api.hf.space/api";
+export const DISEASE_API = "https://nikitab12-plant-disease-api.hf.space";
 
 // CHATBOT (Render)
 export const CHATBOT_API = "https://agriculture-chatbot-t94b.onrender.com";
@@ -274,24 +274,6 @@ export const offerAPI = {
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   },
-
-// ---------------------
-// PLANT DISEASE API
-// ---------------------
-
-export const plantAPI = {
-  predictDisease: async (file: File) => {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    const res = await fetch(`${DISEASE_API}/api/predict`, {
-      method: "POST",
-      body: formData,
-    });
-
-    if (!res.ok) throw new Error(await res.text());
-    return res.json();
-  },
   
   // NEW → Offer History
   getOfferHistory: async (token: string) => {
@@ -329,6 +311,25 @@ export const plantAPI = {
 export const qrAPI = {
   scanBatch: async (batchId: number) => {
     const res = await fetch(`${AUTH_API}/public/batch/${batchId}/`);
+    if (!res.ok) throw new Error(await res.text());
+    return res.json();
+  }
+};
+
+// ---------------------
+// PLANT DISEASE API
+// ---------------------
+
+export const plantAPI = {
+  predictDisease: async (file: File) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await fetch(`${DISEASE_API}/api/predict`, {
+      method: "POST",
+      body: formData,
+    });
+
     if (!res.ok) throw new Error(await res.text());
     return res.json();
   }
