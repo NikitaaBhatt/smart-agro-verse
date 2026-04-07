@@ -1,6 +1,6 @@
 //const BASE_URL = "https://nikita118.pythonanywhere.com/api";
 // AUTH (Django)
-export const AUTH_API = "https://nikita118.pythonanywhere.com";
+export const AUTH_API = "https://nikita118.pythonanywhere.com/api";
 
 // PLANT DISEASE (Render)
 export const DISEASE_API = "https://your-plant-backend.onrender.com";
